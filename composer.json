@@ -1,5 +1,5 @@
 {
-  "name": "vladimir-yuldashev/laravel-queue-rabbitmq",
+  "name": "intergo/rabbit-queue",
   "description": "RabbitMQ driver for Laravel Queue. Supports Laravel Horizon.",
   "license": "MIT",
   "authors": [
@@ -23,12 +23,12 @@
   },
   "autoload": {
     "psr-4": {
-      "VladimirYuldashev\\LaravelQueueRabbitMQ\\": "src/"
+      "Intergo\\RabbitQueue\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "VladimirYuldashev\\LaravelQueueRabbitMQ\\Tests\\": "tests/"
+      "Intergo\\RabbitQueue\\Tests\\": "tests/"
     }
   },
   "extra": {
@@ -37,7 +37,7 @@
     },
     "laravel": {
       "providers": [
-        "VladimirYuldashev\\LaravelQueueRabbitMQ\\LaravelQueueRabbitMQServiceProvider"
+        "Intergo\\RabbitQueue\\LaravelQueueRabbitMQServiceProvider"
       ]
     }
   },
