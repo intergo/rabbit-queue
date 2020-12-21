@@ -1,10 +1,10 @@
 <?php
 
-namespace VladimirYuldashev\LaravelQueueRabbitMQ\Console;
+namespace Intergo\RabbitQueue\Console;
 
 use Illuminate\Queue\Console\WorkCommand;
 use Illuminate\Support\Str;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Consumer;
+use Intergo\RabbitQueue\Consumer;
 
 class ConsumeCommand extends WorkCommand
 {

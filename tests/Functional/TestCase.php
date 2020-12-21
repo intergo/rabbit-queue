@@ -1,9 +1,9 @@
 <?php
 
-namespace VladimirYuldashev\LaravelQueueRabbitMQ\Tests\Functional;
+namespace Intergo\RabbitQueue\Tests\Functional;
 
 use PhpAmqpLib\Connection\AMQPLazyConnection;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Tests\TestCase as BaseTestCase;
+use Intergo\RabbitQueue\Tests\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {

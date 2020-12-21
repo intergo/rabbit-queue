@@ -1,13 +1,13 @@
 <?php
 
-namespace VladimirYuldashev\LaravelQueueRabbitMQ\Tests\Feature;
+namespace Intergo\RabbitQueue\Tests\Feature;
 
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
 use PhpAmqpLib\Exception\AMQPProtocolChannelException;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Tests\Mocks\TestJob;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Tests\TestCase as BaseTestCase;
+use Intergo\RabbitQueue\Queue\Jobs\RabbitMQJob;
+use Intergo\RabbitQueue\Tests\Mocks\TestJob;
+use Intergo\RabbitQueue\Tests\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {

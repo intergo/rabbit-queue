@@ -1,10 +1,10 @@
 <?php
 
-namespace VladimirYuldashev\LaravelQueueRabbitMQ\Console;
+namespace Intergo\RabbitQueue\Console;
 
 use Exception;
 use Illuminate\Console\Command;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Connectors\RabbitMQConnector;
+use Intergo\RabbitQueue\Queue\Connectors\RabbitMQConnector;
 
 class ExchangeDeclareCommand extends Command
 {

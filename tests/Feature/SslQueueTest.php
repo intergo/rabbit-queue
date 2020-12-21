@@ -1,6 +1,6 @@
 <?php
 
-namespace VladimirYuldashev\LaravelQueueRabbitMQ\Tests\Feature;
+namespace Intergo\RabbitQueue\Tests\Feature;
 
 use PhpAmqpLib\Connection\AMQPSSLConnection;
 

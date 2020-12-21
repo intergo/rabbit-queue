@@ -1,6 +1,6 @@
 <?php
 
-namespace VladimirYuldashev\LaravelQueueRabbitMQ;
+namespace Intergo\RabbitQueue;
 
 use Exception;
 use Illuminate\Container\Container;
@@ -12,7 +12,7 @@ use PhpAmqpLib\Exception\AMQPRuntimeException;
 use PhpAmqpLib\Message\AMQPMessage;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Throwable;
-use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\RabbitMQQueue;
+use Intergo\RabbitQueue\Queue\RabbitMQQueue;
 
 class Consumer extends Worker
 {
