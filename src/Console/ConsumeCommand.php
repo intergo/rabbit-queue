@@ -10,7 +10,6 @@ class ConsumeCommand extends WorkCommand
 {
     protected $signature = 'rabbitmq:consume
                             {connection? : The name of the queue connection to work}
-                            {--name=default : The name of the consumer}
                             {--queue= : The names of the queues to work}
                             {--once : Only process the next job on the queue}
                             {--stop-when-empty : Stop when the queue is empty}
@@ -37,7 +36,6 @@ class ConsumeCommand extends WorkCommand
         $consumer = $this->worker;
 
         $consumer->setContainer($this->laravel);
-        $consumer->setName($this->option('name'));
         $consumer->setConsumerTag($this->consumerTag());
         $consumer->setPrefetchSize((int) $this->option('prefetch-size'));
         $consumer->setPrefetchCount((int) $this->option('prefetch-count'));
