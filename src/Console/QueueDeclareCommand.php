@@ -11,6 +11,7 @@ class QueueDeclareCommand extends Command
     protected $signature = 'rabbitmq:queue-declare
                            {name : The name of the queue to declare}
                            {connection=rabbitmq : The name of the queue connection to use}
+                           {--max-priority=4}
                            {--durable=1}
                            {--auto-delete=0}';
 
@@ -31,11 +32,13 @@ class QueueDeclareCommand extends Command
 
             return;
         }
-
+        $maxPriority = (int) $this->option('max-priority');
+        $args = ['x-max-priority' => $maxPriority ?? 1];
         $queue->declareQueue(
             $this->argument('name'),
             (bool) $this->option('durable'),
-            (bool) $this->option('auto-delete')
+            (bool) $this->option('auto-delete'),
+            $args
         );
 
         $this->info('Queue declared successfully.');

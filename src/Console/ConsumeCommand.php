@@ -23,6 +23,7 @@ class ConsumeCommand extends WorkCommand
                             {--timeout=60 : The number of seconds a child process can run}
                             {--tries=1 : Number of times to attempt a job before logging it failed}
                            
+                            {--max-priority=4}
                             {--consumer-tag}
                             {--prefetch-size=0}
                             {--prefetch-count=1000}
@@ -37,6 +38,7 @@ class ConsumeCommand extends WorkCommand
 
         $consumer->setContainer($this->laravel);
         $consumer->setConsumerTag($this->consumerTag());
+        $consumer->setMaxPriority((int) $this->option('max-priority'));
         $consumer->setPrefetchSize((int) $this->option('prefetch-size'));
         $consumer->setPrefetchCount((int) $this->option('prefetch-count'));
 

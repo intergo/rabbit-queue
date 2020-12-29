@@ -530,6 +530,7 @@ class RabbitMQQueue extends Queue implements QueueContract
         $properties = [
             'content_type' => 'application/json',
             'delivery_mode' => AMQPMessage::DELIVERY_MODE_PERSISTENT,
+            'priority' => 1,
         ];
 
         if ($correlationId = json_decode($payload, true, 512)['id'] ?? null) {
@@ -539,7 +540,10 @@ class RabbitMQQueue extends Queue implements QueueContract
         if ($this->isPrioritizeDelayed()) {
             $properties['priority'] = $attempts;
         }
-
+        if(isset($currentPayload['job_priority']))
+        {
+            $properties['priority'] = $currentPayload['job_priority'];
+        }
         $message = new AMQPMessage($payload, $properties);
 
         $message->set('application_headers', new AMQPTable([
