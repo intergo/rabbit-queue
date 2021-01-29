@@ -11,8 +11,8 @@
   "require": {
     "php": "^7.2",
     "ext-json": "*",
-    "illuminate/queue": "^v6.0",
-    "illuminate/support": "^v6.0",
+    "illuminate/queue": "^8.0",
+    "illuminate/support": "^v8.0",
     "php-amqplib/php-amqplib": "^2.12"
   },
   "require-dev": {
