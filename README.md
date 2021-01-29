@@ -12,11 +12,6 @@ Only the latest version will get new features. Bug fixes will be provided using 
 
 | Package Version | Laravel Version | Bug Fixes Until     |                                                                                             |
 |-----------------|-----------------|---------------------|---------------------------------------------------------------------------------------------|
-| 6.0             | 5.5             | August 30th, 2019   | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/v6.0/README.md)   |
-| 7.0             | 5.6             | August 7th, 2018    | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/v7.0/README.md)   |
-| 7.1             | 5.7             | March 4th, 2019     | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/v7.0/README.md)   |
-| 7.2             | 5.8             | August 26th, 2019   | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/v7.0/README.md)   |
-| 8.0             | 5.8             | August 26th, 2019   | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/v8.0/README.md)   |
 | 9               | 6               | October 5th, 2021   | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/v9.0/README.md)   |
 | 10              | 6, 7            | October 5th, 2021   | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/v10.0/README.md)  |
 | 11              | 8               | April 6th, 2021     | [Documentation](https://github.com/vyuldashev/laravel-queue-rabbitmq/blob/master/README.md) |
@@ -62,7 +57,7 @@ Add connection to `config/queue.php`:
                'passphrase' => env('RABBITMQ_SSL_PASSPHRASE', null),
            ],
            'queue' => [
-               'job' => Intergo\RabbitQueue\Queue\Jobs\RabbitMQJob::class,
+               'job' => VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob::class,
            ],
        ],
    
@@ -202,7 +197,7 @@ An example of your own job class:
 
 namespace App\Queue\Jobs;
 
-use Intergo\RabbitQueue\Queue\Jobs\RabbitMQJob as BaseJob;
+use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob as BaseJob;
 
 class RabbitMQJob extends BaseJob
 {
@@ -232,7 +227,7 @@ Or maybe you want to add extra properties to the payload:
 
 namespace App\Queue\Jobs;
 
-use Intergo\RabbitQueue\Queue\Jobs\RabbitMQJob as BaseJob;
+use VladimirYuldashev\LaravelQueueRabbitMQ\Queue\Jobs\RabbitMQJob as BaseJob;
 
 class RabbitMQJob extends BaseJob
 {
@@ -264,7 +259,7 @@ Starting with 8.0, this package supports [Laravel Horizon](http://horizon.larave
 For Lumen usage the service provider should be registered manually as follow in `bootstrap/app.php`:
 
 ```php
-$app->register(Intergo\RabbitQueue\LaravelQueueRabbitMQServiceProvider::class);
+$app->register(VladimirYuldashev\LaravelQueueRabbitMQ\LaravelQueueRabbitMQServiceProvider::class);
 ```
 
 ## Consuming Messages

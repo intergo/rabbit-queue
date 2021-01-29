@@ -107,6 +107,11 @@ class RabbitMQJob extends Job implements JobContract
         if (! $this->failed) {
             $this->rabbitmq->ack($this);
         }
+
+        // required for Laravel Horizon
+        if ($this->rabbitmq instanceof HorizonRabbitMQQueue) {
+            $this->rabbitmq->deleteReserved($this->queue, $this);
+        }
     }
 
     /**

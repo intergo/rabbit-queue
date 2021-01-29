@@ -8,7 +8,7 @@ use Intergo\RabbitQueue\Queue\Connectors\RabbitMQConnector;
 
 class QueueBindCommand extends Command
 {
-    protected $signature = 'rabbitmq:queue-bind                          
+    protected $signature = 'rabbitmq:queue-bind
                            {queue}
                            {exchange}
                            {connection=rabbitmq : The name of the queue connection to use}
