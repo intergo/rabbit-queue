@@ -12,8 +12,6 @@ use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use PhpAmqpLib\Connection\AbstractConnection;
 use PhpAmqpLib\Connection\AMQPLazyConnection;
-use Intergo\RabbitQueue\Horizon\Listeners\RabbitMQFailedEvent;
-use Intergo\RabbitQueue\Horizon\RabbitMQQueue as HorizonRabbitMQQueue;
 use Intergo\RabbitQueue\Queue\RabbitMQQueue;
 
 class RabbitMQConnector implements ConnectorInterface
@@ -51,10 +49,6 @@ class RabbitMQConnector implements ConnectorInterface
             throw new InvalidArgumentException('Invalid worker.');
         }
 
-        if ($queue instanceof HorizonRabbitMQQueue) {
-            $this->dispatcher->listen(JobFailed::class, RabbitMQFailedEvent::class);
-        }
-
         $this->dispatcher->listen(WorkerStopping::class, static function () use ($queue): void {
             $queue->close();
         });
@@ -88,15 +82,13 @@ class RabbitMQConnector implements ConnectorInterface
      * @param AbstractConnection $connection
      * @param string $queue
      * @param array $options
-     * @return HorizonRabbitMQQueue|RabbitMQQueue|Queue
+     * @return RabbitMQQueue|Queue
      */
     protected function createQueue(string $worker, AbstractConnection $connection, string $queue, array $options = [])
     {
         switch ($worker) {
             case 'default':
                 return new RabbitMQQueue($connection, $queue, $options);
-            case 'horizon':
-                return new HorizonRabbitMQQueue($connection, $queue, $options);
             default:
                 return new $worker($connection, $queue, $options);
         }

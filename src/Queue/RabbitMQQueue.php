@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
 use JsonException;
 use PhpAmqpLib\Channel\AMQPChannel;
 use PhpAmqpLib\Connection\AbstractConnection;
+use PhpAmqpLib\Exception\AMQPConnectionClosedException;
 use PhpAmqpLib\Exception\AMQPProtocolChannelException;
 use PhpAmqpLib\Exchange\AMQPExchangeType;
 use PhpAmqpLib\Message\AMQPMessage;
@@ -593,6 +594,8 @@ class RabbitMQQueue extends Queue implements QueueContract
 
         try {
             $this->connection->close();
+        } catch (AMQPConnectionClosedException $exception) {
+            // Ignore the exception
         } catch (ErrorException $exception) {
             // Ignore the exception
         }

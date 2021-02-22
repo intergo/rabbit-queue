@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\Job;
 use Illuminate\Queue\Worker;
 use Illuminate\Queue\WorkerOptions;
 use PhpAmqpLib\Channel\AMQPChannel;
+use PhpAmqpLib\Exception\AMQPConnectionClosedException;
 use PhpAmqpLib\Exception\AMQPRuntimeException;
 use PhpAmqpLib\Message\AMQPMessage;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
@@ -117,17 +118,17 @@ class Consumer extends Worker
             // If the daemon should run (not in maintenance mode, etc.), then we can wait for a job.
             try {
                 $this->channel->wait(null, true, (int) $options->timeout);
+            } catch (AMQPConnectionClosedException $exception) {
+                $this->exceptions->report($exception);
+                $this->stopWorkerIfLostConnection($exception);
             } catch (AMQPRuntimeException $exception) {
                 $this->exceptions->report($exception);
-
                 $this->kill(1);
             } catch (Exception $exception) {
                 $this->exceptions->report($exception);
-
                 $this->stopWorkerIfLostConnection($exception);
             } catch (Throwable $exception) {
                 $this->exceptions->report($exception = new FatalThrowableError($exception));
-
                 $this->stopWorkerIfLostConnection($exception);
             }
 
